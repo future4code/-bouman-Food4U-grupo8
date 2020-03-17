@@ -4,6 +4,7 @@ import { UserGateway } from "../business/gateways/userGateway";
 
 export class UserDB extends BaseDB implements UserGateway {
   private userTableName = "user";
+  private relationTableName = "users_relations";
 
   async createUser(user: User) {
     await this.connection
@@ -27,5 +28,12 @@ export class UserDB extends BaseDB implements UserGateway {
     return new User(user[0].id, user[0].email, user[0].password);
   }
 
-
+  async createUserFollowRelation(
+    followerId: string,
+    followedId: string
+  ): Promise<void> {
+    await this.connection.raw(`INSERT INTO ${this.relationTableName}
+    (\`follower_id\`, \`followed_id\`)
+    values ('${followerId}','${followedId}');`);
+  }
 }
