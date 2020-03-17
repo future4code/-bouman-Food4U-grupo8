@@ -19,7 +19,7 @@ export class LoginUserUC {
             throw new Error("Senha incorreta")
         }
 
-        const token = jwt.sign({userId: user.getId()}, "lalala", {
+        const token = jwt.sign({userId: user.getId(), email: user.getEmail()}, "lalala", {
             expiresIn: "1h"
         })
 

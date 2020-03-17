@@ -9,15 +9,15 @@ export const getUserInfoEndpoint = async (req: Request, res: Response) => {
     try {
         const data = jwt.verify(req.headers.auth as string, "lalala") as { id: string }
 
-        const getUserInfoUC = new GetUserInfoUC(new UserDB());
+        // const getUserInfoUC = new GetUserInfoUC(new UserDB());
         
         const input = {
             id: data.id
         }
 
-        const userInfo = await getUserInfoUC.execute(input)
+        // const userInfo = await getUserInfoUC.execute(input)
         
-        res.send({ user: userInfo });
+        res.send({ user: data });
 
         } catch (err) {
             res.status(400).send({
