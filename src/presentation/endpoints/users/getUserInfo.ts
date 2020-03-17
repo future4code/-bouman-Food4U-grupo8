@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { UserDB } from "../../../data/userDataBase";
-import { GetUserInfoUC } from "../../../business/usecase/getUserInfo";
+import { GetUserInfoUC } from "../../../business/usecase/users/getUserInfo";
 import * as jwt from "jsonwebtoken"
 import { UserGateway } from "../../../business/gateways/userGateway"
 

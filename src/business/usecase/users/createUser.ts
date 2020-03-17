@@ -1,6 +1,6 @@
 import { v4 } from "uuid"
-import { UserGateway } from "../gateways/userGateway"
-import { User } from "../entities/user";
+import { UserGateway } from "../../gateways/userGateway"
+import { User } from "../../entities/user";
 import * as bcrypt from "bcrypt"
 
 

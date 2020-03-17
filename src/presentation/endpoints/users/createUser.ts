@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { CreateUserUC } from "../../../business/usecase/createUser";
+import { CreateUserUC } from "../../../business/usecase/users/createUser";
 import { UserDB } from "../../../data/userDataBase";
 
 export const createUserEndpoint = async (req: Request, res: Response) => {
@@ -9,6 +9,7 @@ export const createUserEndpoint = async (req: Request, res: Response) => {
       email: req.body.email,
       password: req.body.password
     });
+    
     res.status(200).send(result);
   } catch (err) {
     res.status(400).send({
