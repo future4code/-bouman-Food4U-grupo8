@@ -3,6 +3,7 @@ import { UserGateway } from "../gateways/userGateway"
 import { User } from "../entities/user";
 import * as bcrypt from "bcrypt"
 
+
 export class CreateUserUC {
   constructor(private userGateway: UserGateway) { }
 

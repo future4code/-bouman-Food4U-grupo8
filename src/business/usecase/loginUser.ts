@@ -1,5 +1,6 @@
 import { UserGateway } from "../gateways/userGateway"
 import * as bcrypt from "bcrypt"
+import * as jwt from "jsonwebtoken"
 
 export class LoginUserUC {
     constructor(private userGateway: UserGateway) { }
@@ -18,7 +19,11 @@ export class LoginUserUC {
             throw new Error("Senha incorreta")
         }
 
-        return true
+        const token = jwt.sign({userId: user.getId(), email: user.getEmail()}, "lalala", {
+            expiresIn: "1h"
+        })
+
+        return token 
     }
 
 }
