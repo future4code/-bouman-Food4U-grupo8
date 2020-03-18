@@ -9,7 +9,7 @@ export const createUserEndpoint = async (req: Request, res: Response) => {
       email: req.body.email,
       password: req.body.password
     });
-    
+
     res.status(200).send(result);
   } catch (err) {
     res.status(400).send({
