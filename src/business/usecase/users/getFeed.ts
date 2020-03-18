@@ -2,7 +2,7 @@ import { FeedGateway } from "../../gateways/feedGateway";
 
 
 
-export class GetFeefUC {
+export class GetFeedUC {
     constructor(private feedGateway: FeedGateway) { }
 
     async execute(input: GetFeedInput): Promise<GetFeedOutput[]> {
