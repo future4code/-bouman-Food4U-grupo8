@@ -17,14 +17,13 @@ export const followUserEndpoint = async (req: Request, res: Response) => {
       userId,
       followedId: req.body.followedId
     };
-    console.log(input)
+    console.log(input);
     await useCase.execute(input);
     res.send({
       message: "User Followed Successfully"
     });
-    
   } catch (err) {
-      console.log(err)
+    console.log(err);
     res.status(400).send({
       message: err.message
     });

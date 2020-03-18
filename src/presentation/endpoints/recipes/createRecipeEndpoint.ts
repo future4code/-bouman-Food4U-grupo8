@@ -12,7 +12,6 @@ export const createRecipeEndpoint = async (req: Request, res: Response) => {
       userId,
       title: req.body.title,
       description: req.body.description
-      
     };
     await createRecipeUC.execute(input);
     res.send({ message: "Receita Criada" });
