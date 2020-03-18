@@ -2,7 +2,7 @@ export class Recipe {
   constructor(
     private id: string,
     private title: string,
-    private creationDate: Date,
+    private creationDate: number,
     private description: string,
     private userId: string
   ) {}
@@ -23,11 +23,11 @@ export class Recipe {
     this.title = title;
   }
 
-  public getCreationDate(): Date {
+  public getCreationDate(): number {
     return this.creationDate;
   }
 
-  public setCreationDate(creationDate: Date): void {
+  public setCreationDate(creationDate: number): void {
     this.creationDate = creationDate;
   }
 

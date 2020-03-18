@@ -8,7 +8,7 @@ export class GetFeedUC {
 
     return recipes.map(recipe => {
       return {
-        recipeId: recipe.getId(),
+        id: recipe.getId(),
         title: recipe.getTitle(),
         description: recipe.getDescription(),
         creationDate: recipe.getCreationDate(),
@@ -19,12 +19,14 @@ export class GetFeedUC {
   }
 }
 
-export interface GetFeedInput {
-  recipeId: string;
+export interface GetFeedOutput {
+  id: string;
   title: string;
   description: string;
   creationDate: number;
+  userId: string;
+  userEmail: string;
 }
-export interface GetFeedOutput {
+export interface GetFeedInput {
   userId: string;
 }
