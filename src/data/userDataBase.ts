@@ -1,19 +1,31 @@
 import { BaseDB } from "./baseDataBase";
 import { User } from "../business/entities/user";
 import { UserGateway } from "../business/gateways/userGateway";
+import { DuplicateUserError } from "../business/Error/DuplicateUserError";
 
 export class UserDB extends BaseDB implements UserGateway {
   private userTableName = "user";
   private relationTableName = "users_relations";
 
   async createUser(user: User) {
-    await this.connection
+    try{
+      await this.connection
       .insert({
         id: user.getId(),
         email: user.getEmail(),
         password: user.getPassword()
       })
       .into(this.userTableName);
+    }catch(err){
+      console.log(err)
+      if (err.code === 'ER_DUP_ENTRY'){
+        throw new DuplicateUserError()
+      }else{
+        throw err
+      }
+      
+    }
+    
   }
 
   async loginUser(email: string): Promise<User | undefined> {
