@@ -7,7 +7,10 @@ export const createUserEndpoint = async (req: Request, res: Response) => {
     const createUserUC = new CreateUserUC(new UserDB());
     const result = await createUserUC.execute({
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      name: req.body.name,
+      birthday: req.body.birthday
+
     });
 
     res.status(200).send(result);

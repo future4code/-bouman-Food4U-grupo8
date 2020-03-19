@@ -13,7 +13,10 @@ export class UserDB extends BaseDB implements UserGateway {
       .insert({
         id: user.getId(),
         email: user.getEmail(),
-        password: user.getPassword()
+        password: user.getPassword(),
+        name: user.getName(),
+        birthday: user.getBirthday()
+
       })
       .into(this.userTableName);
     }catch(err){
@@ -37,7 +40,7 @@ export class UserDB extends BaseDB implements UserGateway {
       return undefined;
     }
 
-    return new User(user[0].id, user[0].email, user[0].password);
+    return new User(user[0].id, user[0].email, user[0].password, user[0].name, user[0].birthday);
   }
 
   async createUserFollowRelation(
@@ -47,5 +50,11 @@ export class UserDB extends BaseDB implements UserGateway {
     await this.connection.raw(`INSERT INTO ${this.relationTableName}
     (\`follower_id\`, \`followed_id\`)
     values ('${followerId}','${followedId}');`);
+  }
+
+
+  async updateUserPassword(newpassword: string, id: string): Promise<void> {
+    await this.connection.raw(`update user set password=${newpassword} where id=${id};`);
+
   }
 }
