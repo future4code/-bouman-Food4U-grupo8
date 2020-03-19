@@ -12,7 +12,7 @@ export class CreateUserUC {
       const id = v4();
       const SALT_ROUNDS = 10;
       const hashPassword = await bcrypt.hash(input.password, SALT_ROUNDS);
-      const user = new User(id, input.email, hashPassword);
+      const user = new User(id, input.email, hashPassword, input.name, input.birthday);
 
       if (input.password.length < 6) {
         //verificar mensagem não esta aparecendo ---- Erro Corrigido e mensagem aparecendo 
@@ -29,6 +29,8 @@ export class CreateUserUC {
 export interface CreateUserUCInput {
   email: string;
   password: string;
+  name: string;
+  birthday: Date
 }
 
 export interface CreateUserUCOutput {

@@ -7,4 +7,5 @@ export interface UserGateway {
     followerId: string,
     followedId: string
   ): Promise<void>;
+  updateUserPassword(newpassword: string, id: string): Promise<void> 
 }
