@@ -8,7 +8,7 @@ export class FeedDB extends BaseDB implements FeedGateway {
   private userTableName = "user";
 
   async getFeedForUser(userId: string): Promise<FeedRecipe[]> {
-    console.log(userId)
+    console.log(userId);
     const response = await this.connection.raw(`
         SELECT ${this.recipeTableName}.*, ${this.userTableName}.email from ${this.relationTableName}
         JOIN ${this.recipeTableName} on ${this.recipeTableName}.userId=${this.relationTableName}.followed_id
@@ -16,7 +16,7 @@ export class FeedDB extends BaseDB implements FeedGateway {
         WHERE follower_id='${userId}'
         ORDER BY ${this.recipeTableName}.creationDate DESC;
         `);
-        
+
     return response[0].map((recipe: any) => {
       return new FeedRecipe(
         recipe.id,
@@ -27,6 +27,5 @@ export class FeedDB extends BaseDB implements FeedGateway {
         recipe.userEmail
       );
     });
-    
   }
 }

@@ -18,13 +18,11 @@ app.post("/login", loginUserEndpoint);
 app.get("/userInfo", getUserInfoEndpoint);
 app.post("/user/follow", followUserEndpoint);
 app.post("/user/updatepassword", UpdateUserPasswordEndpoint);
-app.post("/user/updateUserInfos", updateUserPasswordEndpoint)
-
-
+app.post("/user/updateUserInfos", updateUserPasswordEndpoint);
 
 // Recepies
 
 app.post("/createRecipe", createRecipeEndpoint);
-app.get("/feed", getFeedEndpoint)
+app.get("/feed", getFeedEndpoint);
 
 export default app;

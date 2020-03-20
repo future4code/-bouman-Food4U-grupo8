@@ -16,9 +16,9 @@ export const getFeedEndpoint = async (req: Request, res: Response) => {
       userId
     };
 
-     const result = await getFeedUC.execute(input);
+    const result = await getFeedUC.execute(input);
 
-    res.send({result});
+    res.send({ result });
   } catch (err) {
     res.status(400).send({
       message: err.message,

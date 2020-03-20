@@ -19,7 +19,7 @@ export class LoginUserUC {
 
     if (!isPaswordCorrect) {
       throw new Error("Senha incorreta");
-    } 
+    }
 
     const token = jwt.sign(
       { userId: user.getId(), email: user.getEmail() },

@@ -4,10 +4,7 @@ import { UpdateUserPasswordUC } from "../../../business/usecase/users/updateUser
 
 import { JWTAuthentication } from "../../../utils/JWTAuthentication";
 
-export const UpdateUserPasswordEndpoint = async (
-  req: Request,
-  res: Response
-) => {
+export const UpdateUserPasswordEndpoint = async (req: Request,res: Response) => {
   try {
     const updateUserPasswordUC = new UpdateUserPasswordUC(new UserDB());
     const jwtAuth = new JWTAuthentication();

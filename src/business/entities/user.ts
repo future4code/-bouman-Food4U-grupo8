@@ -46,6 +46,4 @@ export class User {
   public setBirthday(birthday: Date): void {
     this.birthday = birthday;
   }
-
-  
 }

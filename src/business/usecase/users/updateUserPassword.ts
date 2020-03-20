@@ -6,12 +6,9 @@ export class UpdateUserPasswordUC {
   constructor(private usergateway: UserGateway) {}
 
   async execute(input: UpdateUserInput) {
-    
+    const user = await this.usergateway.getUserById(input.id);
 
-    const user = await this.usergateway.getUserById(input.id)
-
-
-    if(!user){
+    if (!user) {
       throw new Error("usuario não encontrado");
     }
 
@@ -19,7 +16,7 @@ export class UpdateUserPasswordUC {
       input.previousPassword,
       user.getPassword()
     );
-    if(!compare){
+    if (!compare) {
       throw new Error("senha incompativel");
     }
 
@@ -31,13 +28,12 @@ export class UpdateUserPasswordUC {
     const hashPassword = await bcrypt.hash(input.newPassword, SALT_ROUNDS);
 
     await this.usergateway.updateUserPassword(hashPassword, input.id);
-    return {message: "Senha alterada"}
+    return { message: "Senha alterada" };
   }
 }
 
 export interface UpdateUserInput {
-    newPassword: string;
-    previousPassword: string
-    id: string
-
+  newPassword: string;
+  previousPassword: string;
+  id: string;
 }

@@ -8,19 +8,23 @@ export class CreateUserUC {
   constructor(private userGateway: UserGateway) {}
 
   public async execute(input: CreateUserUCInput): Promise<CreateUserUCOutput> {
-    
-      const id = v4();
-      const SALT_ROUNDS = 10;
-      const hashPassword = await bcrypt.hash(input.password, SALT_ROUNDS);
-      const user = new User(id, input.email, hashPassword, input.name, input.birthday);
+    const id = v4();
+    const SALT_ROUNDS = 10;
+    const hashPassword = await bcrypt.hash(input.password, SALT_ROUNDS);
+    const user = new User(
+      id,
+      input.email,
+      hashPassword,
+      input.name,
+      input.birthday
+    );
 
-      if (input.password.length < 6) {
-        //verificar mensagem não esta aparecendo ---- Erro Corrigido e mensagem aparecendo 
-        throw new MinimumCharacterError();
-      }
-      
-      await this.userGateway.createUser(user);
-    
+    if (input.password.length < 6) {
+      throw new MinimumCharacterError();
+    }
+
+    await this.userGateway.createUser(user);
+
     return {
       message: "Usuario criado com sucesso"
     };
@@ -30,7 +34,7 @@ export interface CreateUserUCInput {
   email: string;
   password: string;
   name: string;
-  birthday: Date
+  birthday: Date;
 }
 
 export interface CreateUserUCOutput {
