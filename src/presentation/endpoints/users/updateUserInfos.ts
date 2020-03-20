@@ -1,24 +1,22 @@
 import { Request, Response } from "express";
 import { UserDB } from "../../../data/userDataBase";
-import { UpdateUserPasswordUC } from "../../../business/usecase/users/updateUserPassword";
 
 import { JWTAuthentication } from "../../../utils/JWTAuthentication";
+import { UpdateUserInfosUC } from "../../../business/usecase/users/updateUserInfos";
 
-export const UpdateUserPasswordEndpoint = async (
-  req: Request,
-  res: Response
-) => {
+export const updateUserPasswordEndpoint = async (req: Request,res: Response) => {
   try {
-    const updateUserPasswordUC = new UpdateUserPasswordUC(new UserDB());
+    const updateUserInfosUC = new UpdateUserInfosUC(new UserDB());
     const jwtAuth = new JWTAuthentication();
     const userId = jwtAuth.verifyToken(req.headers.auth as string);
     const input = {
-      previousPassword: req.body.previousPassword,
-      newPassword: req.body.newPassword,
+      email: req.body.email,
+      name: req.body.name,
+      birthday: req.body.birthday,
       id: userId
     };
 
-    const result = await updateUserPasswordUC.execute(input);
+    const result = await updateUserInfosUC.execute(input);
     res.status(200).send(result);
   } catch (err) {
     res.status(400).send({
