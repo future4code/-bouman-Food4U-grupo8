@@ -8,4 +8,5 @@ export interface UserGateway {
     followedId: string
   ): Promise<void>;
   updateUserPassword(newpassword: string, id: string): Promise<void> 
+  getUserById(id: string): Promise<User | undefined>
 }

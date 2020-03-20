@@ -7,13 +7,12 @@ export class UpdateUserPasswordUC {
   async execute(input: UpdateUserInput) {
     
     const newPassword = await this.usergateway.updateUserPassword(input.newPassword, input.id);
-   
+    
   }
 }
 
 export interface UpdateUserInput {
     newPassword: string;
-    id: string,
     previousPassword: string
 
 }
