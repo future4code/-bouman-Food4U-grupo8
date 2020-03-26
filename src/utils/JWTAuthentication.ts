@@ -13,4 +13,3 @@ export class JWTAuthentication {
     return data.userId;
   }
 }
-

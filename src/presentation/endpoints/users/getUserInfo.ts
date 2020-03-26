@@ -16,5 +16,3 @@ export const getUserInfoEndpoint = async (req: Request, res: Response) => {
     });
   }
 };
-
-

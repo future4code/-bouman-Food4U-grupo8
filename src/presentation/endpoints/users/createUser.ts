@@ -10,7 +10,6 @@ export const createUserEndpoint = async (req: Request, res: Response) => {
       password: req.body.password,
       name: req.body.name,
       birthday: req.body.birthday
-
     });
 
     res.status(200).send(result);
